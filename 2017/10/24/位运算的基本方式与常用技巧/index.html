@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="c++," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="位运算的基本方式与常用技巧位运算作为一种方便的运算方式，相对于传统的运算符速度有所提升，在特定情况下显得更为简洁，在各大竞赛中也是常用的技巧">
+<meta name="keywords" content="c++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="位运算的基本方式与常用技巧">
+<meta property="og:url" content="http://yoursite.com/2017/10/24/位运算的基本方式与常用技巧/index.html">
+<meta property="og:site_name" content="FlashYDirOX&#39;s Blog">
+<meta property="og:description" content="位运算的基本方式与常用技巧位运算作为一种方便的运算方式，相对于传统的运算符速度有所提升，在特定情况下显得更为简洁，在各大竞赛中也是常用的技巧">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-11-02T14:45:22.965Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="位运算的基本方式与常用技巧">
+<meta name="twitter:description" content="位运算的基本方式与常用技巧位运算作为一种方便的运算方式，相对于传统的运算符速度有所提升，在特定情况下显得更为简洁，在各大竞赛中也是常用的技巧">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/24/位运算的基本方式与常用技巧/"/>
+
+
+
+
+
+  <title>位运算的基本方式与常用技巧 | FlashYDirOX's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FlashYDirOX's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/位运算的基本方式与常用技巧/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FlashYDirOX">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FlashYDirOX's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">位运算的基本方式与常用技巧</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-24T19:53:24+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="位运算的基本方式与常用技巧"><a href="#位运算的基本方式与常用技巧" class="headerlink" title="位运算的基本方式与常用技巧"></a>位运算的基本方式与常用技巧</h1><p>位运算作为一种方便的运算方式，相对于传统的运算符速度有所提升，在特定情况下显得更为简洁，在各大竞赛中也是常用的技巧</p>
+<a id="more"></a>
+<h2 id="基本运算符"><a href="#基本运算符" class="headerlink" title="基本运算符"></a>基本运算符</h2><p>c语言提供了六种基本的运算符，这六种运算符在c++中同样适用，对于其使用则各有技巧</p>
+<ul>
+<li><h4 id="‘-amp-’按位与运算"><a href="#‘-amp-’按位与运算" class="headerlink" title="‘&amp;’按位与运算"></a>‘&amp;’按位与运算</h4><p>‘&amp;’运算符功能是参与运算的两数各对应的二进位相与。只有对应的两个二进位均为1时，结果位才为1，否则为0。参与运算的数以补码方式出现。<br>例如，对于9&amp;5的运算：<br>​        00001001      (9的二进制补码)<br>​        00000101    (5的二进制补码)<br>结果        00000001       (1的二进制补码)<br>所以9&amp;5的结果为1</p>
+<ul>
+<li><h5 id="常用运算"><a href="#常用运算" class="headerlink" title="常用运算"></a>常用运算</h5><ul>
+<li><h6 id="奇偶性判断："><a href="#奇偶性判断：" class="headerlink" title="奇偶性判断："></a>奇偶性判断：</h6><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">Odd</span><span class="params">(<span class="keyword">int</span> n)</span></span></div><div class="line"><span class="function">    </span>&#123;  </div><div class="line">        <span class="keyword">return</span> (n &amp; <span class="number">1</span>) == <span class="number">1</span>;  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><h6 id="对某数的高位清零："><a href="#对某数的高位清零：" class="headerlink" title="对某数的高位清零："></a>对某数的高位清零：</h6><p>​    以下代码对n的二进制下保留低八位</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Work</span><span class="params">(<span class="keyword">int</span> &amp;n)</span></span></div><div class="line"><span class="function">    </span>&#123;  </div><div class="line">       	n &amp;= <span class="number">255</span>;  </div><div class="line">    &#125;  </div><div class="line"><span class="comment">//255的二进制为0000000011111111</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="‘-’按位或运算"><a href="#‘-’按位或运算" class="headerlink" title="‘|’按位或运算"></a>‘|’按位或运算</h4><p>其功能是参与运算的两数各对应的二进位相或。只要对应的二个二进位有一个为1时，结果位就为1。参与运算的两个数均以补码出现。</p>
+<p>例如，对于9&amp;5的运算：<br>​        00001001      (9的二进制补码)<br>​        00000101      (5的二进制补码)<br>结果        00001101      (13的二进制补码)<br>所以9|5的结果为13</p>
+<ul>
+<li><h5 id="常用运算-1"><a href="#常用运算-1" class="headerlink" title="常用运算"></a>常用运算</h5><ul>
+<li><h5 id="对某数的低八位全部置一"><a href="#对某数的低八位全部置一" class="headerlink" title="对某数的低八位全部置一"></a>对某数的低八位全部置一</h5><p>​    以下代码对n的二进制下低八位全部置为1</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Work</span><span class="params">(<span class="keyword">int</span> &amp;n)</span></span></div><div class="line"><span class="function">    </span>&#123;  </div><div class="line">       	n |= <span class="number">255</span>;  </div><div class="line">    &#125;  </div><div class="line"><span class="comment">//255的二进制为0000000011111111</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h4 id="‘-’按位异或运算"><a href="#‘-’按位异或运算" class="headerlink" title="‘^’按位异或运算"></a>‘^’按位异或运算</h4><p>其功能是参与运算的两数各对应的二进位相异或，当两对应的二进位相异时，结果为1。参与运算数仍以补码出现，例如9^5可写成算式如下：</p>
+<p>例如，对于9^5的运算：<br>​        00001001      (9的二进制补码)<br>​        00000101      (5的二进制补码)<br>结果        00001101      (12的二进制补码)<br>所以9^5的结果为12</p>
+<ul>
+<li><h5 id="常用运算-2"><a href="#常用运算-2" class="headerlink" title="常用运算"></a>常用运算</h5><ul>
+<li><h6 id="交换两数的值"><a href="#交换两数的值" class="headerlink" title="交换两数的值"></a>交换两数的值</h6><p>​    以下代码可以交换a，b的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">inline void swap(int &amp;a, int &amp;b)</div><div class="line">&#123;</div><div class="line">    a ^= b;  </div><div class="line">    b ^= a;  </div><div class="line">    a ^= b;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h4 id="‘-’求反运算"><a href="#‘-’求反运算" class="headerlink" title="‘~’求反运算"></a>‘~’求反运算</h4><p>其功能是对参与运算的数的各二进位按位求反。</p>
+<blockquote>
+<p>如：~9的结果为：~9 = ~(0000000000001001)=1111111111110110</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>####’&lt;&lt;’左移运算符</p>
+<p>其功能把“&lt;&lt; ”左边的运算数的各二进位全部左移若干位，由“&lt;&lt;”右边的数指定移动的位数，高位丢弃，低位补0，便于理解与常用的是将某数乘上2的某次方。例如：<br>   n &lt;&lt; 1<br>指把n的各二进位向左移动1位。如n = 00000011(十进制3)，左移1位后为00000110(十进制6)。</p>
+</li>
+<li><p>####’&lt;&lt;’右移运算符</p>
+<p>其功能是把“&gt;&gt;”左边的运算数的各二进位全部右移若干位，“&gt;&gt;”右边的数指定移动的位数，便于理解与常用的是将某数除2舍去余数重复若干次。例如：<br>n &gt;&gt; 1<br>指把n的各二进位向右移动1位。如n = 00000110(十进制6)，右移1位后为a=00000011(十进制3)。<br>注意：对于有符号数，在右移时，符号位将随同移动。当为正数时，最高位补0，而为负数时，符号位为1，</p>
+<p>​         最高位是补0或是补1 取决于编译系统的规定。Turbo C和很多系统规定为补1。</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/24/网络流的初步应用-USACO4-2-草地排水/" rel="next" title="网络流的初步应用[USACO4.2]草地排水">
+                <i class="fa fa-chevron-left"></i> 网络流的初步应用[USACO4.2]草地排水
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/24/SPFA算法求单源最短路径/" rel="prev" title="SPFA算法求单源最短路径">
+                SPFA算法求单源最短路径 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">FlashYDirOX</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#位运算的基本方式与常用技巧"><span class="nav-number">1.</span> <span class="nav-text">位运算的基本方式与常用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本运算符"><span class="nav-number">1.1.</span> <span class="nav-text">基本运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#‘-amp-’按位与运算"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">‘&’按位与运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用运算"><span class="nav-number">1.1.0.1.1.</span> <span class="nav-text">常用运算</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#奇偶性判断："><span class="nav-number">1.1.0.1.1.1.</span> <span class="nav-text">奇偶性判断：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#对某数的高位清零："><span class="nav-number">1.1.0.1.1.2.</span> <span class="nav-text">对某数的高位清零：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#‘-’按位或运算"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">‘|’按位或运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用运算-1"><span class="nav-number">1.1.0.2.1.</span> <span class="nav-text">常用运算</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对某数的低八位全部置一"><span class="nav-number">1.1.0.2.2.</span> <span class="nav-text">对某数的低八位全部置一</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#‘-’按位异或运算"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">‘^’按位异或运算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常用运算-2"><span class="nav-number">1.1.0.3.1.</span> <span class="nav-text">常用运算</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#交换两数的值"><span class="nav-number">1.1.0.3.1.1.</span> <span class="nav-text">交换两数的值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#‘-’求反运算"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">‘~’求反运算</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FlashYDirOX</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
