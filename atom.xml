@@ -41,9 +41,9 @@
       <category term="vim" scheme="http://yoursite.com/categories/linux/vim/"/>
     
     
-      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
-    
       <category term="vim" scheme="http://yoursite.com/tags/vim/"/>
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
     
   </entry>
   
